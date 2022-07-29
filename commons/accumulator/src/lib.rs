@@ -28,7 +28,7 @@ pub type NodeCount = u64;
 
 pub const MAX_ACCUMULATOR_PROOF_DEPTH: usize = 63;
 pub const MAX_ACCUMULATOR_LEAVES: LeafCount = 1 << MAX_ACCUMULATOR_PROOF_DEPTH;
-pub const MAC_CACHE_SIZE: usize = 65535;
+pub const MAC_CACHE_SIZE: usize = 165535;
 
 /// accumulator method define
 pub trait Accumulator {

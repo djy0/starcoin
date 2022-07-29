@@ -344,8 +344,14 @@ where
 impl InnerStore for DBStorage {
     fn get(&self, prefix_name: &str, key: Vec<u8>) -> Result<Option<Vec<u8>>> {
         record_metrics("db", prefix_name, "get", self.metrics.as_ref()).call(|| {
+            println!("db_t0: {}, key: {:?}", prefix_name, hex::encode(&key));
+            // use std::time::Instant;
+            // let now = Instant::now();
             let cf_handle = self.get_cf_handle(prefix_name)?;
+            // println!("db_t1: {}", now.elapsed().as_nanos());
+            // let now = Instant::now();
             let result = self.db.get_cf(cf_handle, key.as_slice())?;
+            // println!("db_t2: {}", now.elapsed().as_nanos());
             Ok(result)
         })
     }

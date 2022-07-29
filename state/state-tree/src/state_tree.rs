@@ -250,10 +250,15 @@ where
 
     pub fn dump_iter(&self) -> Result<JellyfishMerkleIntoIterator<K, StorageTreeReader<K>>> {
         let cur_root_hash = self.root_hash();
-        let cache = {
-            let cache_guard = self.cache.lock();
-            cache_guard.clone()
-        };
+        // let cache = {
+        //     let cache_guard = self.cache.lock();
+        //     cache_guard.clone()
+        // };
+        let cache = self.cache.lock().to_owned();
+        // let cache = self.cache.lock().clone();
+        //     let cache_guard = self.cache.lock();
+        //     cache_guard.clone()
+        // };
         let iterator = JellyfishMerkleIntoIterator::new(
             StorageTreeReader {
                 store: self.storage.clone(),
@@ -350,6 +355,7 @@ where
     K: RawKey,
 {
     fn get_node_option(&self, node_key: &NodeKey) -> Result<Option<Node<K>>> {
+        println!("go into CachedTreeReader get_node_option");
         if node_key == &*SPARSE_MERKLE_PLACEHOLDER_HASH {
             return Ok(Some(Node::new_null()));
         }
@@ -358,6 +364,7 @@ where
                 return Ok(Some(n));
             }
         }
+        println!("CachedTreeReader miss");
         match self.store.get(node_key) {
             Ok(Some(n)) => Ok(Some(n.try_into()?)),
             Ok(None) => Ok(None),
@@ -375,6 +382,7 @@ where
     K: RawKey,
 {
     fn get_node_option(&self, node_key: &NodeKey) -> Result<Option<Node<K>>> {
+        println!("go into StorageTreeReader get_node_option");
         if node_key == &*SPARSE_MERKLE_PLACEHOLDER_HASH {
             return Ok(Some(Node::new_null()));
         }
@@ -383,6 +391,7 @@ where
                 return Ok(Some(n));
             }
         }
+        println!("StorageTreeReader miss");
         match self.store.get(node_key) {
             Ok(Some(n)) => Ok(Some(n.try_into()?)),
             Ok(None) => Ok(None),

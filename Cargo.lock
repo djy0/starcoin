@@ -10286,6 +10286,7 @@ dependencies = [
  "chrono",
  "coarsetime",
  "forkable-jellyfish-merkle",
+ "hex",
  "lru",
  "num_enum",
  "once_cell",

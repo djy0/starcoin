@@ -11,6 +11,7 @@ use std::{collections::HashMap, sync::Arc};
 
 #[test]
 fn test_get_leaves() {
+    println!("{}", *ACCUMULATOR_PLACEHOLDER_HASH);
     let leaves = create_leaves(1..100_000);
     let mock_store = MockAccumulatorStore::new();
     let accumulator = MerkleAccumulator::new(

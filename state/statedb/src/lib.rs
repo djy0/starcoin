@@ -213,7 +213,7 @@ pub struct ChainStateDB {
     updates: RwLock<HashSet<AccountAddress>>,
 }
 
-static G_DEFAULT_CACHE_SIZE: usize = 10240;
+static G_DEFAULT_CACHE_SIZE: usize = 125400;
 
 impl ChainStateDB {
     pub fn mock() -> Self {

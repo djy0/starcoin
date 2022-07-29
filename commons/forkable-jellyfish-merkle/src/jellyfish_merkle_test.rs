@@ -51,6 +51,7 @@ fn test_insert_to_empty_tree() {
 
 #[test]
 fn test_delete_from_tree() {
+    println!("{}", *SPARSE_MERKLE_PLACEHOLDER_HASH);
     let db = MockTreeStore::default();
     let tree = JellyfishMerkleTree::new(&db);
 

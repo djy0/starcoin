@@ -68,7 +68,9 @@ pub fn export(
 
     use std::time::Instant;
     let now = Instant::now();
+    let mut count = 0;
     for (address_bytes, account_state_bytes) in global_states.iter() {
+        count += 1;
         let account: AccountAddress = bcs_ext::from_bytes(address_bytes)?;
         let account_state: AccountState = account_state_bytes.as_slice().try_into()?;
         let resource_root = account_state.storage_roots()[DataType::RESOURCE.storage_index()];
@@ -101,6 +103,7 @@ pub fn export(
         }
     }
     println!("t2: {}", now.elapsed().as_millis());
+    println!("loop count: {}", count);
     // flush csv writer
     csv_writer.flush()?;
     Ok(())
