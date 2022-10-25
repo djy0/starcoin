@@ -1,6 +1,6 @@
 // Copyright (c) The Diem Core Contributors
 // SPDX-License-Identifier: Apache-2.0
-
+#![cfg_attr(coverage_nightly, feature(no_coverage))]
 use serde_generate::CustomCode;
 use starcoin_vm_types::language_storage::TypeTag;
 use starcoin_vm_types::transaction::ScriptABI;

@@ -1,6 +1,7 @@
 // Copyright (c) The Diem Core Contributors
 // SPDX-License-Identifier: Apache-2.0
-
+#[cfg(coverage)]
+use coverage_helper::test;
 use std::process::Command;
 use tempfile::tempdir;
 

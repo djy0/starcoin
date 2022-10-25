@@ -25,6 +25,7 @@ starcoin-vm-types = {path = "../types"}
 [dev-dependencies]
 tempfile = "3.2.0"
 which = "4.1.0"
+coverage-helper = "0.1"
 
 [features]
 default = []
